@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>False</Plugin>
+  <PluginURL></PluginURL>
+  <PluginAuthor></PluginAuthor>
+  <Name>Coder</Name>
+  <Description>Cloud-based development environment. Provision VS Code, JetBrains IDEs, and other development tools in cloud, on Kubernetes, or Docker.</Description>
+  <Registry>https://ghcr.io/coder/coder</Registry>
+  <Repository>ghcr.io/coder/coder:v2.27.9-amd64</Repository>
+  <Tag>v2.27.9-amd64</Tag>
+  <Project>https://coder.com</Project>
+  <Category>Development:IDE</Category>
+  <Icon>https://raw.githubusercontent.com/coder/coder/main/site/static/logo.svg</Icon>
+  <Support>https://forums.unraid.net/</Support>
+  <Overview>Coder is a platform for provisioning self-hosted cloud development environments. Deploy VS Code or JetBrains IDEs, access them in your web browser, and code on any device with a consistent development environment.</Overview>
+  <WebUI>http://[IP]:[PORT:7080]</WebUI>
+  <Template>
+    <Required/>
+    <Privileged>False</Privileged>
+    <Network>bridge</Network>
+    <TerminalRoot>/</TerminalRoot>
+    <Shell>sh</Shell>
+    
+    <!-- Port Configuration -->
+    <Port Name="Coder Web UI" HostPort="7080" ContainerPort="7080" Protocol="tcp">7080</Port>
+    
+    <!-- Volume Mounts -->
+    <Volume Name="Coder Config" HostDir="/mnt/user/appdata/coder" ContainerDir="/home/coder" Mode="rw"/>
+    <Volume Name="Coder Data" HostDir="/mnt/user/appdata/coder/data" ContainerDir="/var/lib/coder" Mode="rw"/>
+    
+    <!-- Environment Variables -->
+    <Environment>
+      <Variable Name="CODER_ADDRESS" Value="0.0.0.0:7080" Description="Address to bind Coder web server to"/>
+      <Variable Name="CODER_TLS_ENABLE" Value="false" Description="Enable TLS (use with reverse proxy for HTTPS)"/>
+      <Variable Name="CODER_SECURE_AUTH_COOKIE" Value="false" Description="Secure auth cookies (enable when using HTTPS)"/>
+      <Variable Name="CODER_POSTGRESQL_URL" Value="file:///var/lib/coder/coder.db" Description="SQLite database URL (default)"/>
+      <Variable Name="CODER_PROVISIONER_DAEMONS" Value="1" Description="Number of provisioner daemon processes"/>
+      <Variable Name="CODER_ALLOW_PATH_APP_SHARING" Value="true" Description="Allow sharing single apps with path-based routing"/>
+      <Variable Name="CODER_ALLOW_DEV_URLS" Value="true" Description="Allow dev URLs for localhost development"/>
+      <Variable Name="CODER_DISABLE_SESSION_EXPIRY" Value="false" Description="Disable session expiration"/>
+    </Environment>
+    
+    <!-- Labels -->
+    <Labels>
+      <Label>Coder</Label>
+      <Label>IDE</Label>
+      <Label>Development</Label>
+      <Label>VSCode</Label>
+      <Label>Cloud Development</Label>
+    </Labels>
+    
+    <!-- Repository Reference -->
+    <Repository Description="Coder GitHub Repository">https://github.com/coder/coder</Repository>
+    
+    <!-- Documentation -->
+    <Beta>False</Beta>
+    <ReadOnly>False</ReadOnly>
+  </Template>
+</Containers>
