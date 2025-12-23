@@ -27,7 +27,7 @@
 In the Docker container configuration, add the following environment variables:
 
 ```
-CODER_ADDRESS=0.0.0.0:7080
+CODER_HTTP_ADDRESS=0.0.0.0:7080
 CODER_POSTGRESQL_URL=file:///var/lib/coder/coder.db
 CODER_TLS_ENABLE=false
 CODER_SECURE_AUTH_COOKIE=false

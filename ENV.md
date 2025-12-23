@@ -2,11 +2,12 @@
 
 ## Core Configuration
 
-### CODER_ADDRESS
+### CODER_HTTP_ADDRESS
 - **Type:** string
 - **Default:** `0.0.0.0:7080`
 - **Description:** Address (host:port) Coder binds to for HTTP connections
 - **Example:** `0.0.0.0:7080`
+- **Note:** Replaces deprecated `CODER_ADDRESS`
 
 ### CODER_POSTGRESQL_URL
 - **Type:** string
